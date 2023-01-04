@@ -10,7 +10,7 @@ const Input = (props: InputProps) => {
 const StyledInput = styled.input`
   ${tw`h-16`}
   ${tw`border border-slate-300 outline-green-500`}
-  ${tw`px-5 leading-4 prose-lg`}
+  ${tw`px-5 leading-4 prose prose-lg`}
 `;
 
 export default Input;

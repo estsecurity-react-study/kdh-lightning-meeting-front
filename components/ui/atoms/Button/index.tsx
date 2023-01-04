@@ -10,7 +10,7 @@ const Button = (props: ButtonProps) => {
 const StyledButton = styled.button`
   ${tw`h-16 px-5 bg-green-500`}
   ${tw`border border-green-600`}
-  ${tw`font-bold leading-4 prose-xl text-white`}
+  ${tw`font-bold leading-4 prose prose-xl text-white`}
   ${tw`disabled:(opacity-30 cursor-not-allowed)`}
 `;
 

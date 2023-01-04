@@ -1,8 +1,8 @@
 import 'twin.macro';
 
-import LoginForm from '../../organisms/AuthForm/LoginForm';
-import RegisterForm from '../../organisms/AuthForm/RegisterForm';
-import { BaseAuthForm } from '../../organisms/AuthForm/type';
+import LoginForm from '../../ui/organisms/AuthForm/LoginForm';
+import RegisterForm from '../../ui/organisms/AuthForm/RegisterForm';
+import { BaseAuthForm } from '../../ui/organisms/AuthForm/type';
 
 export interface AuthTemplateProps extends BaseAuthForm {
   type: 'login' | 'register';
