@@ -1,7 +1,7 @@
-import BaseTemplate from '../components/templates/BaseTemplate';
+import HomeTemplate from '../components/templates/HomeTemplate';
 
 const Home = () => {
-  return <BaseTemplate>null</BaseTemplate>;
+  return <HomeTemplate />;
 };
 
 export default Home;
