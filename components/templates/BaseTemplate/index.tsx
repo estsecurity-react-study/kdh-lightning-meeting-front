@@ -8,8 +8,11 @@ export type BaseTemplateProps = React.PropsWithChildren;
 const BaseTemplate = ({ children }: BaseTemplateProps) => {
   return (
     <>
-      <main tw="min-h-screen">{children}</main>
-      <div id="portal-root">
+      <main tw="min-h-screen prose prose-invert">{children}</main>
+      <div
+        id="portal-root"
+        tw="prose prose-invert prose-p:prose-sm prose-p:m-0"
+      >
         <PortalNavbar />
       </div>
     </>
