@@ -3,14 +3,14 @@ import tw from 'twin.macro';
 
 import Divider from '../../ui/atoms/Divider';
 import SectionTitle from '../../ui/atoms/SectionTitle';
-import LoginForm from '../../ui/organisms/AuthForm/LoginForm';
+import LoginForm, { LoginInputs } from '../../ui/organisms/AuthForm/LoginForm';
 import RegisterForm from '../../ui/organisms/AuthForm/RegisterForm';
 import { BaseAuthForm } from '../../ui/organisms/AuthForm/type';
 import SocialButtonList from '../../ui/organisms/SocialButtonList';
 
-export interface AuthTemplateProps extends BaseAuthForm {
-  type: 'login' | 'register';
-}
+export type AuthTemplateProps =
+  | ({ type: 'login' } & BaseAuthForm<LoginInputs>)
+  | ({ type: 'register' } & BaseAuthForm<any>);
 
 const AuthTemplate = ({ type, ...rest }: AuthTemplateProps) => {
   return (

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { useMemo } from 'react';
+import { useForm } from 'react-hook-form';
 import 'twin.macro';
 
 import Button from '../../../atoms/Button';
@@ -9,7 +10,20 @@ import { BaseAuthForm } from '../type';
 
 export const emailKey = 'savedEmail' as const;
 
-const LoginForm = ({ onSubmit, loading, error }: BaseAuthForm) => {
+export interface LoginInputs {
+  email: string;
+  password: string;
+}
+
+export type LoginFormProps = BaseAuthForm<LoginInputs>;
+
+const LoginForm = ({ onSubmit, loading, error }: LoginFormProps) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginInputs>();
+
   const defaultEmail = useMemo(
     () =>
       typeof window !== 'undefined' ? localStorage.getItem(emailKey) ?? '' : '',
@@ -17,22 +31,56 @@ const LoginForm = ({ onSubmit, loading, error }: BaseAuthForm) => {
   );
 
   return (
-    <form onSubmit={onSubmit} tw="grid grid-cols-1 gap-y-5">
-      <Input
-        defaultValue={defaultEmail}
-        name="email"
-        type="email"
-        placeholder="이메일을 입력하세요"
-        autoComplete="off"
-      />
-      <Input
-        name="password"
-        type="password"
-        placeholder="패스워드를 입력하세요"
-        autoComplete="off"
-      />
+    <form
+      onSubmit={onSubmit && handleSubmit(onSubmit)}
+      tw="grid grid-cols-1 gap-y-5"
+    >
+      <div tw="flex flex-col gap-y-2">
+        <Input
+          defaultValue={defaultEmail}
+          type="email"
+          placeholder="이메일을 입력해주세요"
+          autoComplete="off"
+          {...register('email', {
+            required: '필수 응답 항목입니다',
+            pattern: {
+              value: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i,
+              message: '이메일 형식이 아닙니다.',
+            },
+          })}
+        />
+        {errors?.email && (
+          <span tw="text-red-500 text-sm font-bold pl-2">
+            {errors.email.message}
+          </span>
+        )}
+      </div>
 
-      {error && <span tw="text-red-500">{error}</span>}
+      <div tw="flex flex-col gap-y-2">
+        <Input
+          type="password"
+          placeholder="패스워드를 입력해주세요"
+          autoComplete="off"
+          {...register('password', {
+            required: '필수 응답 항목입니다',
+            minLength: {
+              value: 8,
+              message: '비밀번호는 8자 이상이여야 합니다',
+            },
+            maxLength: {
+              value: 24,
+              message: '비밀번호는 24자 이하여야 합니다',
+            },
+          })}
+        />
+        {errors?.password && (
+          <span tw="text-red-500 text-sm font-bold pl-2">
+            {errors.password.message}
+          </span>
+        )}
+      </div>
+
+      {error && <span tw="text-red-500 text-sm font-bold pl-2">{error}</span>}
       <Button type="submit" disabled={loading}>
         로그인
       </Button>

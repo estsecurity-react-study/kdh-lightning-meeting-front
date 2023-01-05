@@ -1,16 +1,7 @@
-import { FormEvent } from 'react';
-
 import AuthTemplate from '../../components/templates/AuthTemplate';
 
 const SignInPage = () => {
-  return (
-    <AuthTemplate
-      type="login"
-      onSubmit={(event: FormEvent<Element>) => {
-        console.log(event);
-      }}
-    />
-  );
+  return <AuthTemplate type="login" onSubmit={() => {}} />;
 };
 
 export default SignInPage;
