@@ -21,12 +21,13 @@ const AuthTemplate = ({ type, ...rest }: AuthTemplateProps) => {
         tw`text-sm text-white`,
       ]}
     >
-      <div>
-        <SectionTitle>
-          {type === 'login' && '로그인'}
-          {type === 'register' && '회원가입'}
-        </SectionTitle>
-      </div>
+      {/* 타이틀 영역 */}
+      <SectionTitle>
+        {type === 'login' && '로그인'}
+        {type === 'register' && '회원가입'}
+      </SectionTitle>
+
+      {/* 컨텐츠 영역 */}
       {type === 'login' && (
         <>
           <LoginForm {...rest} />
@@ -36,7 +37,7 @@ const AuthTemplate = ({ type, ...rest }: AuthTemplateProps) => {
       )}
       {type === 'register' && <RegisterForm {...rest} />}
 
-      {/* 연결 링크 */}
+      {/* 연결 링크 영역 */}
       <div tw="flex flex-row gap-x-2 justify-center mt-8 items-center">
         <span tw="text-slate-300 text-sm">
           {type === 'login' && '아직 회원이 아니신가요?'}
