@@ -1,5 +1,6 @@
 import 'twin.macro';
 
+import Divider from '../../atoms/Divider';
 import Image from '../../atoms/Image';
 
 export interface CardProps {
@@ -21,9 +22,10 @@ const Card = ({ href, imgSrc, title, category, creator, like }: CardProps) => {
         {/* 텍스트 영역 */}
         <div tw="mt-3">
           <span tw="text-base line-clamp-2">{title}</span>
-          <div tw="flex text-xs divide-x divide-gray-700 text-gray-400 mt-1">
-            <span tw="pr-2">{category}</span>
-            <span tw="pl-2">{creator}</span>
+          <div tw="flex items-stretch text-xs text-gray-400 mt-1">
+            <span>{category}</span>
+            <Divider type="vertical" />
+            <span>{creator}</span>
           </div>
         </div>
       </a>

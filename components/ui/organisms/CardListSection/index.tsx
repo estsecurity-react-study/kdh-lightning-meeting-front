@@ -1,5 +1,6 @@
 import tw from 'twin.macro';
 
+import SectionTitle from '../../atoms/SectionTitle';
 import Card from '../../molecules/Card';
 
 export interface CardListSectionProps {
@@ -9,7 +10,7 @@ export interface CardListSectionProps {
 const CardListSection = ({ title }: CardListSectionProps) => {
   return (
     <section>
-      {title && <h2 tw="text-2xl font-semibold m-0">{title}</h2>}
+      {title && <SectionTitle>{title}</SectionTitle>}
       <ul
         css={[
           tw`p-0 mt-8 list-none`,

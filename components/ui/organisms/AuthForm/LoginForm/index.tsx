@@ -1,5 +1,4 @@
 import { useMemo } from 'react';
-import { GoogleLoginButton } from 'react-social-login-buttons';
 import 'twin.macro';
 
 import Button from '../../../atoms/Button';
@@ -17,7 +16,7 @@ const LoginForm = ({ onSubmit, loading, error }: BaseAuthForm) => {
   );
 
   return (
-    <form onSubmit={onSubmit} tw="w-[510px] grid grid-cols-1 gap-y-5">
+    <form onSubmit={onSubmit} tw="max-w-[510px] grid grid-cols-1 gap-y-5">
       <Input
         defaultValue={defaultEmail}
         name="email"
@@ -36,10 +35,6 @@ const LoginForm = ({ onSubmit, loading, error }: BaseAuthForm) => {
       <Button type="submit" disabled={loading}>
         로그인
       </Button>
-
-      <a href="http://localhost:8000/api/auth/google/login">
-        <GoogleLoginButton text="Google 로그인" />
-      </a>
 
       <div tw="flex justify-between">
         <LabelCheckbox

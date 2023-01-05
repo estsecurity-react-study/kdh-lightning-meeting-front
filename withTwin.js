@@ -1,10 +1,10 @@
-const path = require("path");
+const path = require('path');
 
 // The folders containing files importing twin.macro
 const includedDirs = [
-  path.resolve(__dirname, "components"),
-  path.resolve(__dirname, "pages"),
-  path.resolve(__dirname, "styles"),
+  path.resolve(__dirname, 'components'),
+  path.resolve(__dirname, 'pages'),
+  path.resolve(__dirname, 'styles'),
 ];
 
 module.exports = function withTwin(nextConfig) {
@@ -20,20 +20,21 @@ module.exports = function withTwin(nextConfig) {
         use: [
           options.defaultLoaders.babel,
           {
-            loader: "babel-loader",
+            loader: 'babel-loader',
             options: {
               sourceMaps: dev,
               presets: [
                 [
-                  "@babel/preset-react",
-                  { runtime: "automatic", importSource: "@emotion/react" },
+                  '@babel/preset-react',
+                  { runtime: 'automatic', importSource: '@emotion/react' },
                 ],
               ],
               plugins: [
-                require.resolve("babel-plugin-macros"),
-                require.resolve("@emotion/babel-plugin"),
+                require.resolve('babel-plugin-inline-react-svg'),
+                require.resolve('babel-plugin-macros'),
+                require.resolve('@emotion/babel-plugin'),
                 [
-                  require.resolve("@babel/plugin-syntax-typescript"),
+                  require.resolve('@babel/plugin-syntax-typescript'),
                   { isTSX: true },
                 ],
               ],
@@ -53,7 +54,7 @@ module.exports = function withTwin(nextConfig) {
         };
       }
 
-      if (typeof nextConfig.webpack === "function") {
+      if (typeof nextConfig.webpack === 'function') {
         return nextConfig.webpack(config, options);
       } else {
         return config;
