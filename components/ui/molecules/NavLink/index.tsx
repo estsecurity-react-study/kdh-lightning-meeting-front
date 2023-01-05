@@ -13,7 +13,7 @@ const NavLink = ({ href, active, icon, text, ...rest }: NavLinkProps) => {
     <Link
       href={href}
       css={[
-        tw`flex flex-col items-center flex-1 p-2 text-gray-200 no-underline stroke-1`,
+        tw`flex flex-col items-center flex-1 p-2 no-underline stroke-1 text-slate-200`,
         active && tw`font-extrabold text-white stroke-2`,
       ]}
       {...rest}

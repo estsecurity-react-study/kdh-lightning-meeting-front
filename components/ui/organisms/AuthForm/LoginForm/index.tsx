@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useMemo } from 'react';
 import 'twin.macro';
 
@@ -16,7 +17,7 @@ const LoginForm = ({ onSubmit, loading, error }: BaseAuthForm) => {
   );
 
   return (
-    <form onSubmit={onSubmit} tw="max-w-[510px] grid grid-cols-1 gap-y-5">
+    <form onSubmit={onSubmit} tw="grid grid-cols-1 gap-y-5">
       <Input
         defaultValue={defaultEmail}
         name="email"
@@ -36,15 +37,15 @@ const LoginForm = ({ onSubmit, loading, error }: BaseAuthForm) => {
         로그인
       </Button>
 
-      <div tw="flex justify-between">
+      <div tw="flex justify-between items-center">
         <LabelCheckbox
           label="이메일 저장"
           id="isEmailSaveCheck"
           defaultChecked={!!defaultEmail}
         />
-        <a href="#" tw="text-green-500 underline underline-offset-2">
+        <Link href="#" tw="text-green-500 underline underline-offset-2">
           비밀번호를 잊으셨나요?
-        </a>
+        </Link>
       </div>
     </form>
   );

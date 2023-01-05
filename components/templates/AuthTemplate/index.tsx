@@ -1,4 +1,5 @@
-import 'twin.macro';
+import Link from 'next/link';
+import tw from 'twin.macro';
 
 import Divider from '../../ui/atoms/Divider';
 import SectionTitle from '../../ui/atoms/SectionTitle';
@@ -13,7 +14,13 @@ export interface AuthTemplateProps extends BaseAuthForm {
 
 const AuthTemplate = ({ type, ...rest }: AuthTemplateProps) => {
   return (
-    <main tw="min-h-screen text-white text-sm max-w-7xl mx-auto px-4">
+    <main
+      css={[
+        tw`max-w-2xl min-h-screen px-4 pt-12 mx-auto pb-36`,
+        tw`flex flex-col justify-center`,
+        tw`text-sm text-white`,
+      ]}
+    >
       <div>
         <SectionTitle>
           {type === 'login' && '로그인'}
@@ -28,6 +35,21 @@ const AuthTemplate = ({ type, ...rest }: AuthTemplateProps) => {
         </>
       )}
       {type === 'register' && <RegisterForm {...rest} />}
+
+      {/* 연결 링크 */}
+      <div tw="flex flex-row gap-x-2 justify-center mt-8 items-center">
+        <span tw="text-slate-300 text-sm">
+          {type === 'login' && '아직 회원이 아니신가요?'}
+          {type === 'register' && '이미 계정이 있으신가요?'}
+        </span>
+        <Link
+          href={type === 'login' ? '/auth/signup' : '/auth/signin'}
+          tw="text-green-500 underline underline-offset-2 font-extrabold text-base"
+        >
+          {type === 'login' && '회원가입'}
+          {type === 'register' && '로그인'}
+        </Link>
+      </div>
     </main>
   );
 };

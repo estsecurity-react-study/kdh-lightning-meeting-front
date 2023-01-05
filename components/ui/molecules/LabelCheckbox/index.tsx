@@ -9,7 +9,7 @@ export interface LabelCheckboxProps extends CheckboxProps {
 
 const LabelCheckbox = ({ id, label, ...rest }: LabelCheckboxProps) => {
   return (
-    <span tw="flex">
+    <span tw="flex flex-row items-center">
       <Checkbox id={id} {...rest} />
       <label htmlFor={id} tw="pl-2 select-none cursor-pointer">
         {label}

@@ -22,7 +22,7 @@ const Card = ({ href, imgSrc, title, category, creator, like }: CardProps) => {
         {/* 텍스트 영역 */}
         <div tw="mt-3">
           <span tw="text-base line-clamp-2">{title}</span>
-          <div tw="flex items-stretch text-xs text-gray-400 mt-1">
+          <div tw="flex items-stretch text-xs text-slate-300 mt-1">
             <span>{category}</span>
             <Divider type="vertical" />
             <span>{creator}</span>

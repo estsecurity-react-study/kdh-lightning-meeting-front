@@ -6,7 +6,7 @@ import { BaseAuthForm } from '../type';
 
 const RegisterForm = ({ onSubmit, loading, error }: BaseAuthForm) => {
   return (
-    <form onSubmit={onSubmit} tw="w-[510px] grid grid-cols-1 gap-y-5">
+    <form onSubmit={onSubmit} tw="grid grid-cols-1 gap-y-5">
       <Input
         name="email"
         type="email"
