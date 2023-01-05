@@ -10,7 +10,6 @@ export interface RegisterInputs {
   password: string;
   passwordConfirm: string;
   name: string;
-  phoneNumber: string;
 }
 
 export type LoginFormProps = BaseAuthForm<RegisterInputs>;
@@ -105,22 +104,6 @@ const RegisterForm = ({ onSubmit, loading, error }: LoginFormProps) => {
         {errors?.name && (
           <span tw="text-red-500 text-sm font-bold pl-2">
             {errors.name.message}
-          </span>
-        )}
-      </div>
-
-      <div tw="flex flex-col gap-y-2">
-        <Input
-          type="text"
-          placeholder="전화번호를 입력해주세요"
-          autoComplete="off"
-          {...register('phoneNumber', {
-            required: '필수 응답 항목입니다',
-          })}
-        />
-        {errors?.phoneNumber && (
-          <span tw="text-red-500 text-sm font-bold pl-2">
-            {errors.phoneNumber.message}
           </span>
         )}
       </div>

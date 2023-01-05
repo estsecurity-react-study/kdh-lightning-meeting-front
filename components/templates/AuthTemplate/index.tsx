@@ -4,13 +4,15 @@ import tw from 'twin.macro';
 import Divider from '../../ui/atoms/Divider';
 import SectionTitle from '../../ui/atoms/SectionTitle';
 import LoginForm, { LoginInputs } from '../../ui/organisms/AuthForm/LoginForm';
-import RegisterForm from '../../ui/organisms/AuthForm/RegisterForm';
+import RegisterForm, {
+  RegisterInputs,
+} from '../../ui/organisms/AuthForm/RegisterForm';
 import { BaseAuthForm } from '../../ui/organisms/AuthForm/type';
 import SocialButtonList from '../../ui/organisms/SocialButtonList';
 
 export type AuthTemplateProps =
   | ({ type: 'login' } & BaseAuthForm<LoginInputs>)
-  | ({ type: 'register' } & BaseAuthForm<any>);
+  | ({ type: 'register' } & BaseAuthForm<RegisterInputs>);
 
 const AuthTemplate = ({ type, ...rest }: AuthTemplateProps) => {
   return (
@@ -30,7 +32,7 @@ const AuthTemplate = ({ type, ...rest }: AuthTemplateProps) => {
       {/* 컨텐츠 영역 */}
       {type === 'login' && (
         <>
-          <LoginForm {...rest} />
+          <LoginForm {...(rest as any)} />
           <Divider />
           <SocialButtonList />
         </>
