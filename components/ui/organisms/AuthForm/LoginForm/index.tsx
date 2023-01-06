@@ -6,7 +6,7 @@ import 'twin.macro';
 import Button from '../../../atoms/Button';
 import Input from '../../../atoms/Input';
 import LabelCheckbox from '../../../molecules/LabelCheckbox';
-import { BaseAuthForm } from '../type';
+import { AuthFormType } from '../type';
 
 export const emailKey = 'savedEmail' as const;
 
@@ -15,7 +15,7 @@ export interface LoginInputs {
   password: string;
 }
 
-export type LoginFormProps = BaseAuthForm<LoginInputs>;
+export type LoginFormProps = AuthFormType<LoginInputs>;
 
 const LoginForm = ({ onSubmit, loading, error }: LoginFormProps) => {
   const {
@@ -54,6 +54,9 @@ const LoginForm = ({ onSubmit, loading, error }: LoginFormProps) => {
             {errors.email.message}
           </span>
         )}
+        {typeof error === 'object' && error?.email && (
+          <span tw="text-red-500 text-sm font-bold pl-2">{error?.email}</span>
+        )}
       </div>
 
       <div tw="flex flex-col gap-y-2">
@@ -78,9 +81,16 @@ const LoginForm = ({ onSubmit, loading, error }: LoginFormProps) => {
             {errors.password.message}
           </span>
         )}
+        {typeof error === 'object' && error?.password && (
+          <span tw="text-red-500 text-sm font-bold pl-2">
+            {error?.password}
+          </span>
+        )}
       </div>
 
-      {error && <span tw="text-red-500 text-sm font-bold pl-2">{error}</span>}
+      {typeof error === 'string' && (
+        <span tw="text-red-500 text-sm font-bold pl-2">{error}</span>
+      )}
       <Button type="submit" disabled={loading}>
         로그인
       </Button>

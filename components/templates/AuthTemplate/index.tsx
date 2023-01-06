@@ -7,18 +7,18 @@ import LoginForm, { LoginInputs } from '../../ui/organisms/AuthForm/LoginForm';
 import RegisterForm, {
   RegisterInputs,
 } from '../../ui/organisms/AuthForm/RegisterForm';
-import { BaseAuthForm } from '../../ui/organisms/AuthForm/type';
+import { AuthFormType } from '../../ui/organisms/AuthForm/type';
 import SocialButtonList from '../../ui/organisms/SocialButtonList';
 
 export type AuthTemplateProps =
-  | ({ type: 'login' } & BaseAuthForm<LoginInputs>)
-  | ({ type: 'register' } & BaseAuthForm<RegisterInputs>);
+  | ({ type: 'login' } & AuthFormType<LoginInputs>)
+  | ({ type: 'register' } & AuthFormType<RegisterInputs>);
 
 const AuthTemplate = ({ type, ...rest }: AuthTemplateProps) => {
   return (
     <main
       css={[
-        tw`max-w-2xl min-h-screen px-4 pt-12 mx-auto pb-36`,
+        tw`max-w-2xl min-h-screen px-4 mx-auto`,
         tw`flex flex-col justify-center`,
         tw`text-sm text-white`,
       ]}
@@ -37,7 +37,7 @@ const AuthTemplate = ({ type, ...rest }: AuthTemplateProps) => {
           <SocialButtonList />
         </>
       )}
-      {type === 'register' && <RegisterForm {...rest} />}
+      {type === 'register' && <RegisterForm {...(rest as any)} />}
 
       {/* 연결 링크 영역 */}
       <div tw="flex flex-row gap-x-2 justify-center mt-8 items-center">

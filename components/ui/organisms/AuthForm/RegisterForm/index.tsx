@@ -3,7 +3,7 @@ import 'twin.macro';
 
 import Button from '../../../atoms/Button';
 import Input from '../../../atoms/Input';
-import { BaseAuthForm } from '../type';
+import { AuthFormType } from '../type';
 
 export interface RegisterInputs {
   email: string;
@@ -12,9 +12,9 @@ export interface RegisterInputs {
   name: string;
 }
 
-export type LoginFormProps = BaseAuthForm<RegisterInputs>;
+export type RegisterFormProps = AuthFormType<RegisterInputs>;
 
-const RegisterForm = ({ onSubmit, loading, error }: LoginFormProps) => {
+const RegisterForm = ({ onSubmit, loading, error }: RegisterFormProps) => {
   const {
     register,
     watch,
@@ -45,6 +45,9 @@ const RegisterForm = ({ onSubmit, loading, error }: LoginFormProps) => {
             {errors.email.message}
           </span>
         )}
+        {typeof error === 'object' && error?.email && (
+          <span tw="text-red-500 text-sm font-bold pl-2">{error?.email}</span>
+        )}
       </div>
 
       <div tw="flex flex-col gap-y-2">
@@ -67,6 +70,11 @@ const RegisterForm = ({ onSubmit, loading, error }: LoginFormProps) => {
         {errors?.password && (
           <span tw="text-red-500 text-sm font-bold pl-2">
             {errors.password.message}
+          </span>
+        )}
+        {typeof error === 'object' && error?.password && (
+          <span tw="text-red-500 text-sm font-bold pl-2">
+            {error?.password}
           </span>
         )}
       </div>
@@ -106,9 +114,14 @@ const RegisterForm = ({ onSubmit, loading, error }: LoginFormProps) => {
             {errors.name.message}
           </span>
         )}
+        {typeof error === 'object' && error?.name && (
+          <span tw="text-red-500 text-sm font-bold pl-2">{error?.name}</span>
+        )}
       </div>
 
-      {error && <span tw="text-red-500 text-sm font-bold pl-2">{error}</span>}
+      {typeof error === 'string' && (
+        <span tw="text-red-500 text-sm font-bold pl-2">{error}</span>
+      )}
       <Button type="submit" disabled={loading}>
         회원가입
       </Button>
